@@ -32,9 +32,9 @@ const slides = [
   'industryAnalysis',
   'leadershipTeam',
   'leadershipTeamImage',
-  'revenueModelImage',
   'scalabilityRoadmap',
   'revenueModel',
+  'revenueModelImage',
   'conclusionImage',
   'conclusion'
 ];
@@ -42,6 +42,20 @@ const slides = [
 function App() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const nextSlide = () => {
     if (currentSlide < slides.length - 1) {
@@ -75,9 +89,30 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentSlide]);
 
+  // Handle touch events for mobile swipe
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+  
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+  
+  const handleTouchEnd = () => {
+    if (touchStart - touchEnd > 100) {
+      // Swipe left
+      nextSlide();
+    }
+    
+    if (touchEnd - touchStart > 100) {
+      // Swipe right
+      prevSlide();
+    }
+  };
+
   const slideVariants = {
     enter: (direction) => ({
-      x: direction === 'right' ? 1000 : -1000,
+      x: direction === 'right' ? (isMobile ? 500 : 1000) : (isMobile ? -500 : -1000),
       opacity: 0
     }),
     center: {
@@ -85,15 +120,15 @@ function App() {
       opacity: 1
     },
     exit: (direction) => ({
-      x: direction === 'right' ? -1000 : 1000,
+      x: direction === 'right' ? (isMobile ? -500 : -1000) : (isMobile ? 500 : 1000),
       opacity: 0
     })
   };
 
   const transition = {
     type: 'spring',
-    stiffness: 300,
-    damping: 30
+    stiffness: isMobile ? 200 : 300,
+    damping: isMobile ? 25 : 30
   };
 
   const getCurrentSlideNumber = () => {
@@ -101,10 +136,15 @@ function App() {
   };
 
   return (
-    <div className="app gradient-bg">
-      <FaServer className="floating-icon floating-icon-1 text-8xl text-accentBlue" />
-      <FaChartLine className="floating-icon floating-icon-2 text-8xl text-accentGreen" />
-      <FaDatabase className="floating-icon floating-icon-3 text-8xl text-accentGold" />
+    <div 
+      className="app gradient-bg"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      <FaServer className="floating-icon floating-icon-1 text-accentBlue" />
+      <FaChartLine className="floating-icon floating-icon-2 text-accentGreen" />
+      <FaDatabase className="floating-icon floating-icon-3 text-accentGold" />
       
       <div className="nav-dots">
         {slides.map((slide, index) => (
@@ -553,22 +593,6 @@ function App() {
             </div>
           )}
 
-          {slides[currentSlide] === 'revenueModelImage' && (
-            <div className="slide-content flex justify-center items-center">
-              <motion.div 
-                className="image-container w-full h-full flex justify-center items-center"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                <img src={imageUrls.revenueModelImage} alt="Revenue Model" className="fullscreen-image" />
-                <div className="image-caption">
-                  Revenue Growth Strategy - From Local Sales to Enterprise Scale
-                </div>
-              </motion.div>
-            </div>
-          )}
-
           {slides[currentSlide] === 'scalabilityRoadmap' && (
             <div className="slide-content">
               <motion.h1 
@@ -710,6 +734,22 @@ function App() {
                     Selling GPUs to crypto mining farms and system integrators at wholesale rates.
                   </p>
                 </motion.div>
+              </motion.div>
+            </div>
+          )}
+
+          {slides[currentSlide] === 'revenueModelImage' && (
+            <div className="slide-content flex justify-center items-center">
+              <motion.div 
+                className="image-container w-full h-full flex justify-center items-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <img src={imageUrls.revenueModelImage} alt="Revenue Model" className="fullscreen-image" />
+                <div className="image-caption">
+                  Revenue Growth Strategy - From Local Sales to Enterprise Scale
+                </div>
               </motion.div>
             </div>
           )}
