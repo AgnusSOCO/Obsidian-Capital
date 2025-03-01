@@ -18,7 +18,11 @@ import {
   FaChartPie, 
   FaGlobe, 
   FaHandshake, 
-  FaRocket
+  FaRocket,
+  FaCheckCircle,
+  FaLock,
+  FaBolt,
+  FaExpandArrowsAlt
 } from 'react-icons/fa';
 import { imageUrls } from './imageUrls';
 
@@ -28,6 +32,8 @@ const slides = [
   'executiveSummaryImage',
   'businessDescription',
   'businessDescriptionImage',
+  'proxies',
+  'proxiesImage',
   'titleImage',
   'industryAnalysis',
   'leadershipTeam',
@@ -419,6 +425,88 @@ function App() {
                 <img src={imageUrls.businessDescriptionImage} alt="Automation Software" className="fullscreen-image" />
                 <div className="image-caption">
                   Advanced Automation Software - Our Competitive Edge
+                </div>
+              </motion.div>
+            </div>
+          )}
+
+          {slides[currentSlide] === 'proxies' && (
+            <div className="slide-content">
+              <motion.h1 
+                className="slide-title"
+                initial={{ opacity: 0, y: -30 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                <FaLock className="inline-block mr-3 text-accentBlue" />
+                Proxies: The Key to Scalable GPU Acquisition
+              </motion.h1>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <p className="slide-text">
+                  Proxies enable our bots to send multiple purchase requests simultaneously by masking their real IP addresses. This makes it appear as if numerous individual buyers—rather than a single automated system—are purchasing GPUs.
+                </p>
+                
+                <div className="highlight-box">
+                  <h3 className="text-xl font-bold mb-2 highlight-text flex items-center">
+                    <FaNetworkWired className="mr-2 icon-pulse" /> Why Proxies Matter in GPU Botting
+                  </h3>
+                  <p className="slide-text mb-3">
+                    How They Give Us the Edge:
+                  </p>
+                </div>
+                
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4"
+                >
+                  <div className="stat-box">
+                    <FaLock className="text-3xl text-accentGreen mx-auto mb-3 icon-pulse" />
+                    <div className="text-lg font-semibold">Bypass Purchase Limits</div>
+                    <p className="text-sm">Avoid restrictions like one-per-customer limits and CAPTCHA roadblocks</p>
+                  </div>
+                  
+                  <div className="stat-box">
+                    <FaBolt className="text-3xl text-accentGold mx-auto mb-3 icon-bounce" />
+                    <div className="text-lg font-semibold">Accelerate Checkout Speed</div>
+                    <p className="text-sm">Secure GPUs the instant they drop, outpacing manual buyers</p>
+                  </div>
+                  
+                  <div className="stat-box">
+                    <FaExpandArrowsAlt className="text-3xl text-accentBlue mx-auto mb-3 icon-spin" />
+                    <div className="text-lg font-semibold">Scale Operations Seamlessly</div>
+                    <p className="text-sm">Deploy hundreds of purchase attempts across multiple storefronts without detection</p>
+                  </div>
+                </motion.div>
+                
+                <motion.p
+                  className="slide-text mt-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                >
+                  By leveraging high-speed, residential, and data center proxies, we maximize acquisition efficiency, ensuring a consistent supply of in-demand GPUs for resale at premium market value.
+                </motion.p>
+              </motion.div>
+            </div>
+          )}
+
+          {slides[currentSlide] === 'proxiesImage' && (
+            <div className="slide-content flex justify-center items-center">
+              <motion.div 
+                className="image-container w-full h-full flex justify-center items-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <img src={imageUrls.proxiesImage} alt="Proxy Network" className="fullscreen-image" />
+                <div className="image-caption">
+                  Advanced Proxy Infrastructure - Enabling Scalable GPU Acquisition
                 </div>
               </motion.div>
             </div>
