@@ -24,6 +24,7 @@ body {
   background-color: var(--light-bg);
   color: var(--text-primary);
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .gradient-bg {
@@ -57,8 +58,9 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: clamp(1rem, 5vw, 2rem);
   position: relative;
+  overflow: hidden;
 }
 
 .slide-content {
@@ -68,10 +70,11 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-bottom: 4rem; /* Space for navigation */
 }
 
 .slide-title {
-  font-size: 2.5rem;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
   font-weight: 700;
   margin-bottom: 1.5rem;
   background: linear-gradient(90deg, #333333 0%, #000000 100%);
@@ -81,13 +84,13 @@ body {
 }
 
 .slide-subtitle {
-  font-size: 1.5rem;
+  font-size: clamp(1.25rem, 4vw, 1.5rem);
   font-weight: 500;
   margin-bottom: 1rem;
 }
 
 .slide-text {
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
   line-height: 1.6;
   margin-bottom: 1rem;
 }
@@ -103,7 +106,7 @@ body {
 .stat-box {
   background: rgba(0, 120, 212, 0.1);
   border-radius: 8px;
-  padding: 1.5rem;
+  padding: clamp(1rem, 3vw, 1.5rem);
   margin: 1rem 0;
   text-align: center;
   transition: all 0.3s ease;
@@ -116,28 +119,28 @@ body {
 }
 
 .stat-number {
-  font-size: 2.5rem;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
   font-weight: 700;
   color: var(--accent-gold);
   margin-bottom: 0.5rem;
 }
 
 .stat-label {
-  font-size: 1rem;
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
   color: var(--text-primary);
 }
 
 .team-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  gap: clamp(1rem, 3vw, 2rem);
   margin: 2rem 0;
 }
 
 .team-member {
   background: rgba(0, 0, 0, 0.03);
   border-radius: 8px;
-  padding: 1.5rem;
+  padding: clamp(1rem, 3vw, 1.5rem);
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
@@ -149,14 +152,14 @@ body {
 }
 
 .team-name {
-  font-size: 1.3rem;
+  font-size: clamp(1.1rem, 3.5vw, 1.3rem);
   font-weight: 600;
   margin-bottom: 0.5rem;
   color: var(--highlight-yellow);
 }
 
 .team-role {
-  font-size: 1rem;
+  font-size: clamp(0.85rem, 2.5vw, 1rem);
   font-weight: 500;
   margin-bottom: 1rem;
   color: var(--accent-blue);
@@ -165,7 +168,7 @@ body {
 .phase-box {
   background: rgba(0, 0, 0, 0.03);
   border-radius: 8px;
-  padding: 1.5rem;
+  padding: clamp(1rem, 3vw, 1.5rem);
   margin: 1rem 0;
   border-left: 4px solid var(--accent-green);
   transition: all 0.3s ease;
@@ -179,7 +182,7 @@ body {
 }
 
 .phase-title {
-  font-size: 1.3rem;
+  font-size: clamp(1.1rem, 3.5vw, 1.3rem);
   font-weight: 600;
   margin-bottom: 0.5rem;
   color: var(--accent-green);
@@ -187,18 +190,18 @@ body {
 
 .nav-dots {
   position: fixed;
-  right: 2rem;
+  right: clamp(0.5rem, 2vw, 2rem);
   top: 50%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: clamp(0.5rem, 1.5vw, 1rem);
   z-index: 100;
 }
 
 .nav-dot {
-  width: 12px;
-  height: 12px;
+  width: clamp(8px, 1.5vw, 12px);
+  height: clamp(8px, 1.5vw, 12px);
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.2);
   cursor: pointer;
@@ -212,17 +215,18 @@ body {
 
 .nav-arrows {
   position: fixed;
-  bottom: 2rem;
+  bottom: clamp(1rem, 3vw, 2rem);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 2rem;
+  gap: clamp(1rem, 3vw, 2rem);
   z-index: 100;
+  align-items: center;
 }
 
 .nav-arrow {
-  width: 50px;
-  height: 50px;
+  width: clamp(40px, 8vw, 50px);
+  height: clamp(40px, 8vw, 50px);
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.05);
   display: flex;
@@ -283,7 +287,7 @@ body {
 .two-column {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: clamp(1rem, 3vw, 2rem);
   align-items: center;
 }
 
@@ -336,28 +340,26 @@ body {
   width: 100%;
   background: rgba(0, 0, 0, 0.7);
   color: white;
-  padding: 1rem;
+  padding: clamp(0.5rem, 2vw, 1rem);
   text-align: center;
   font-weight: 500;
   border-radius: 0 0 12px 12px;
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
 }
 
 .slide-indicator {
-  position: absolute;
-  bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
+  font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+  color: var(--text-primary);
   background: rgba(0, 0, 0, 0.1);
   padding: 0.5rem 1rem;
   border-radius: 20px;
-  font-size: 0.9rem;
-  color: var(--text-primary);
 }
 
 .floating-icon {
   position: absolute;
   opacity: 0.1;
   z-index: -1;
+  font-size: clamp(3rem, 10vw, 8rem) !important;
 }
 
 .floating-icon-1 {
@@ -423,24 +425,153 @@ body {
   }
 }
 
+/* Enhanced mobile responsiveness */
 @media (max-width: 768px) {
   .two-column {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
   
   .team-grid {
     grid-template-columns: 1fr;
-  }
-  
-  .slide-title {
-    font-size: 2rem;
-  }
-  
-  .slide-subtitle {
-    font-size: 1.2rem;
+    gap: 1rem;
   }
   
   .nav-dots {
-    right: 1rem;
+    right: 0.5rem;
+  }
+  
+  .highlight-box {
+    padding: 0.75rem;
+  }
+  
+  .stat-box, .phase-box, .team-member {
+    padding: 1rem;
+  }
+  
+  .slide-content {
+    padding-bottom: 5rem;
+  }
+  
+  .nav-arrows {
+    bottom: 1rem;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .slide-container {
+    padding: 1rem 0.75rem;
+  }
+  
+  .nav-dots {
+    display: none;
+  }
+  
+  .nav-arrow {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .slide-indicator {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.8rem;
+  }
+  
+  .image-caption {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .floating-icon {
+    opacity: 0.05;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .slide-title {
+    margin-bottom: 0.75rem;
+  }
+  
+  .slide-text {
+    margin-bottom: 0.5rem;
+  }
+  
+  .highlight-box, .stat-box, .phase-box, .team-member {
+    margin: 0.5rem 0;
+    padding: 0.75rem;
+  }
+  
+  .team-grid {
+    margin: 0.5rem 0;
+  }
+  
+  .slide-content {
+    padding-bottom: 3rem;
+    justify-content: flex-start;
+    padding-top: 2rem;
+    overflow-y: auto;
+  }
+  
+  .nav-arrows {
+    bottom: 0.5rem;
+  }
+}
+
+/* Tablet devices */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .slide-container {
+    padding: 1.5rem;
+  }
+  
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Ensure touch targets are large enough on mobile */
+@media (pointer: coarse) {
+  .nav-arrow, .nav-dot {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  
+  .nav-dot {
+    margin: 0.25rem 0;
+  }
+}
+
+/* Improve readability on high-contrast mode */
+@media (prefers-contrast: more) {
+  .highlight-text, .accent-blue, .accent-green, .accent-gold {
+    color: black;
+    font-weight: bold;
+  }
+  
+  .slide-title {
+    background: none;
+    -webkit-text-fill-color: black;
+    color: black;
+  }
+  
+  .highlight-box, .stat-box, .phase-box, .team-member {
+    border: 2px solid black;
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .icon-pulse, .icon-spin, .icon-bounce,
+  .floating-icon-1, .floating-icon-2, .floating-icon-3 {
+    animation: none;
+  }
+  
+  .image-container:hover .slide-image {
+    transform: none;
+  }
+  
+  .stat-box:hover, .team-member:hover, .phase-box:hover, .nav-arrow:hover {
+    transform: none;
   }
 }
