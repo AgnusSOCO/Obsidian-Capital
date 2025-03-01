@@ -14,6 +14,9 @@ export const imageUrls = {
   // Business Description automation software image
   businessDescriptionImage: "https://res.cloudinary.com/dunndxabk/image/upload/v1740782589/3_l7oeva.png",
   
+  // Proxies image
+  proxiesImage: "https://res.cloudinary.com/dunndxabk/image/upload/v1740860503/_-_visual_selection_1_gmus4m.png",
+  
   // Leadership Team image
   leadershipTeamImage: "https://res.cloudinary.com/dunndxabk/image/upload/v1740782589/4_zkdee7.png",
   
